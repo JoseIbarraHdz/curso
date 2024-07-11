@@ -1,4 +1,4 @@
 {
     "name" : "Jose Ibarra",
-    'depends': 'base_setup'
+    'depends': ['base_setup',]
 }
