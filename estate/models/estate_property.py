@@ -1,7 +1,6 @@
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields, models
-from dateutil.relativedelta import relativedelta
 
 
 class EstateProperty(models.Model):
@@ -38,3 +37,4 @@ class EstateProperty(models.Model):
         copy=False,
         default="new",
     )
+    property_type_id = fields.Many2one()
