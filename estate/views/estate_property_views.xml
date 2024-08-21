@@ -1,10 +1,11 @@
 <?xml version="1.0" ?>
 <odoo>
+
     <record id="estate_property_search" model="ir.ui.view">
         <field name="name">estate.property.search</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <search string="Delivery Carrier">
+            <search>
                 <field name="name" string="Title" />
                 <field name="postcode" />
                 <field name="expected_price" />
@@ -31,7 +32,11 @@
         <field name="name">estate.property.form</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <form string="Test">
+            <form>
+            <header>
+                <button name="action_sold" type="object" string="Sold" />
+                <button name="action_cancel" type="object" string="Cancel" />
+            </header>
                 <sheet>
                     <div class="oe_title mb24">
                         <h1>
@@ -40,12 +45,16 @@
                     </div>
                     <group>
                         <group>
+                            <field name="tags_id" widget="many2many_tags" />
+                            <field name="state" />
+                            <field name="property_type" />
                             <field name="postcode" />
                             <field name="date_availability" />
                         </group>
                         <group>
                             <field name="expected_price" />
                             <field name="selling_price" />
+                            <field name="best_price" />
                         </group>
                     </group>
                     <notebook>
@@ -53,13 +62,24 @@
                             <group>
                                 <field name="description" />
                                 <field name="bedrooms" />
-                                <field name="living_area" />
+                                <field name="living_area" string="Living Area (sqm)" />
                                 <field name="facades" />
                                 <field name="garage" />
                                 <field name="garden" />
-                                <field name="garden_area" />
+                                <field name="garden_area" string="Garden Area (sqm)" />
                                 <field name="garden_orientation" />
-                                <field name="state" />
+                                <field name="total_area" string="Total Area (sqm)" />
+                            </group>
+                        </page>
+                        <page string="Offers">
+                            <group>
+                                <field name="offer_ids" />
+                            </group>
+                        </page>
+                        <page string="Other Info">
+                            <group>
+                                <field name="buyer" />
+                                <field name="seller" />
                             </group>
                         </page>
                     </notebook>
@@ -85,8 +105,9 @@
     </record>
 
     <record id="estate_property_action" model="ir.actions.act_window">
-        <field name="name">Estate</field>
+        <field name="name">Estate Property</field>
         <field name="res_model">estate.property</field>
         <field name="view_mode">tree,form</field>
     </record>
+
 </odoo>

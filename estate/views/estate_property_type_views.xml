@@ -1,8 +1,37 @@
 <?xml version="1.0" ?>
 <odoo>
+
+    <record id="estate_property_type_view_form" model="ir.ui.view">
+        <field name="name">estate.property.type.form</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <sheet>
+                    <div class="oe_title mb24">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="estate_property_type_view_tree" model="ir.ui.view">
+        <field name="name">estate.property.type.tree</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
     <record id="estate_property_type_action" model="ir.actions.act_window">
-        <field name="name">Estate</field>
+        <field name="name">Property Type</field>
         <field name="res_model">estate.property.type</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="estate_property_type_view_form" />
     </record>
+
 </odoo>
