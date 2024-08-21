@@ -40,6 +40,8 @@
                     </div>
                     <group>
                         <group>
+                            <field name="tags" widget="many2many_tags" />
+                            <field name="property_type" />
                             <field name="postcode" />
                             <field name="date_availability" />
                         </group>
@@ -60,6 +62,19 @@
                                 <field name="garden_area" />
                                 <field name="garden_orientation" />
                                 <field name="state" />
+                            </group>
+                        </page>
+                        <page string="Other Info">
+                            <group>
+                                <field name="buyer" />
+                                <field name="seller" />
+                            </group>
+                        </page>
+                        <page string="Other Info">
+                            <group>
+                                <field price="price" />
+                                <field partner_id="partner_id" />
+                                <field status="status" />
                             </group>
                         </page>
                     </notebook>
