@@ -45,9 +45,9 @@
                     </div>
                     <group>
                         <group>
-                            <field name="tags_id" widget="many2many_tags" />
+                            <field name="tag_ids" widget="many2many_tags" />
                             <field name="state" />
-                            <field name="property_type" />
+                            <field name="property_type_id" />
                             <field name="postcode" />
                             <field name="date_availability" />
                         </group>
@@ -78,8 +78,8 @@
                         </page>
                         <page string="Other Info">
                             <group>
-                                <field name="buyer" />
-                                <field name="seller" />
+                                <field name="buyer_id" />
+                                <field name="seller_id" />
                             </group>
                         </page>
                     </notebook>

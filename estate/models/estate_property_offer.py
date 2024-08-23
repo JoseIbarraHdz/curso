@@ -20,6 +20,10 @@ class EstatePropertyOffer(models.Model):
     validity = fields.Integer(default=7)
     date_deadline = fields.Date(compute="_compute_date_deadline")
 
+    _sql_constraints = [
+        ("check_price", "CHECK(price >= 0)", "The price must be positive."),
+    ]
+
     @api.depends("validity")
     def _compute_date_deadline(self):
         for record in self:
@@ -27,8 +31,19 @@ class EstatePropertyOffer(models.Model):
 
     def action_accept(self):
         for record in self:
-            record.status = "accepted"
+            property = record.property_id
+            if property:
+                # Rechazar todas las demás ofertas para esta propiedad
+                other_offers = self.search([("property_id", "=", property.id), ("id", "!=", record.id)])
+                other_offers.write({"status": "refused"})
+
+                # Actualizar el estado de la oferta actual a 'accepted'
+                record.write({"status": "accepted"})
+
+                # Actualizar el precio de venta de la propiedad
+                property.selling_price = record.price
+        return True
 
     def action_refuse(self):
-        for record in self:
-            record.status = "refused"
+        self.write({"status": "refused"})
+        return True
